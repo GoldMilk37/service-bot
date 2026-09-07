@@ -79,4 +79,36 @@
 
 ## 快速开始
 
-（待补：venv → pip install → .env 配置 → 运行）
+```bash
+# 1. 克隆仓库
+git clone https://github.com/GoldMilk37/service-bot.git
+cd service-bot
+
+# 2. 创建并激活虚拟环境（Python ≥ 3.10）
+python -m venv .venv
+.venv\Scripts\activate        # Windows；Mac/Linux: source .venv/bin/activate
+
+# 3. 安装依赖
+pip install -r requirements.txt
+
+# 4. 配置 API Key
+#    在项目根目录新建 .env 文件，写入一行：
+#    DEEPSEEK_API_KEY=sk-你的key
+#    （key 在 platform.deepseek.com 注册后创建）
+
+# 5. 启动
+python main.py
+```
+
+启动后进入命令行对话，试试这些问题：
+
+| 你问 | Agent 会 |
+|------|---------|
+| 查重率要求多少 | 调 `query_policy("查重")` 查政策后作答 |
+| 我要申请延期答辩 | 先查延期政策 → 发现需线下审批 → 调 `transfer_to_human` 转人工 |
+| 开题报告怎么写 | 调 `get_writing_guide("开题报告")` 返回指南全文 |
+| 帮我排个时间规划，6月10日答辩 | 调 `get_timeline_template` 按剩余天数生成四阶段计划 |
+| 我这个选题行不行：基于深度学习的图像识别 | 调 `check_topic_feasibility` 规则初筛 |
+| 我刚才问了啥 | 直接凭会话记忆回答（多轮记忆） |
+
+输入 `q` 退出。
